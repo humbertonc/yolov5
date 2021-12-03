@@ -53,6 +53,11 @@ def set_logging(name=None, verbose=True):
 LOGGER = set_logging(__name__)  # define globally (used in train.py, val.py, detect.py, etc.)
 
 
+# Defines a file handler to generate the file for the bot
+fh = logging.FileHandler('bot_msg.txt', mode='w')
+fh.setLevel(100) # the level is high in order to guarantee there are only bot related messages
+LOGGER.addHandler(fh)
+
 class Profile(contextlib.ContextDecorator):
     # Usage: @Profile() decorator or 'with Profile():' context manager
     def __enter__(self):
